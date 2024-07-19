@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "type_traits": "c",
+        "munit.h": "c",
+        "expanding_array.h": "c",
+        "vector": "c"
+    }
+}

@@ -13,10 +13,9 @@ void add(LINKED_LIST& l, int val){
     NODE* cur = init_empty_node_ptr(val);
     NODE* prev = find_prev(l, val);
 
-    if(prev){
-        cur->next = prev->next;
-        prev->next = cur;
-    }
+    cur->next = prev->next;
+    prev->next = cur;
+    
 }
 
 void remove(LINKED_LIST& l, int val){
@@ -25,20 +24,17 @@ void remove(LINKED_LIST& l, int val){
 
     if(!cur) return;
 
-    if(prev){
-        NODE* temp = prev->next;
-        prev->next = temp->next;
-        free(temp);
-    } 
+    NODE* temp = prev->next;
+    prev->next = temp->next;
+    free(temp);
+    
 }
 
-
-
 NODE* find_prev(LINKED_LIST& l, int val){
-    NODE* tmp = l.head->next;
+    NODE* tmp = l.head;
 
-    while(tmp->next != l.head){
-        if(tmp->next->data >= val)
+    while(true){
+        if(tmp->next->data >= val || tmp->next == l.head)
             return tmp;
         tmp = tmp->next;
     }

@@ -1,7 +1,6 @@
 typedef struct Node{
     int data;
     struct Node* next;
-    struct Node* prev;
 } NODE;
 
 void init_node(NODE& n, int the_data, NODE* the_next);

@@ -17,6 +17,20 @@ void add(LINKED_LIST& l, int val){
         add_between(l, cur, prev);
 }
 
+void remove(LINKED_LIST& l, int val){
+    NODE* cur = find(l, val);
+    NODE* prev = find_prev(l, val);
+
+    if(cur == l.head && cur == l.tail)
+        remove_to_empty(l);
+    else if(cur == l.head)
+        remove_from_head(l);
+    else if(cur == l.tail)
+        remove_from_tail(l);
+    else
+        remove_between(l, prev);  
+}
+
 void add_to_empty(LINKED_LIST& l, NODE* cur){
     l.head = cur;
     l.tail = l.head;
@@ -67,8 +81,7 @@ void remove_from_tail(LINKED_LIST& l){
 }
 
 
-void remove_between(LINKED_LIST& l, int prev_val){
-    NODE* prev = find(l, prev_val);
+void remove_between(LINKED_LIST& l, NODE* prev){
     if(prev){
         NODE* temp = prev->next;
         prev->next = temp->next;
@@ -78,11 +91,11 @@ void remove_between(LINKED_LIST& l, int prev_val){
 
 NODE* find_prev(LINKED_LIST& l, int val){
     NODE* tmp = l.head;
-    if (!tmp || tmp->data > val)
+    if (!tmp || tmp->data >= val)
         return NULL;
 
     while(tmp->next){
-        if(tmp->next->data > val)
+        if(tmp->next->data >= val)
             return tmp;
         tmp = tmp->next;
     }

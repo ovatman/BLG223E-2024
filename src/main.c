@@ -9,14 +9,11 @@ int main(){
     add(l, 3);
     add(l, 5);
     traverse(l);
-    clear(l);
-    /*
-    remove_between(l, 3);
-    remove_between(l, 4);
-    remove_between(l, 2);
-    remove_from_tail(l);
-    remove_from_head(l);
-    remove_to_empty(l);*/
+    //clear(l);
+    remove(l, 3);
+    remove(l, 2);
+    remove(l, 5);
+    remove(l, 4);
     traverse(l);
     
     return 0;

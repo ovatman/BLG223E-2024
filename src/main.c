@@ -4,6 +4,8 @@ using namespace std;
 
 int main(){
     LINKED_LIST l;
+    init_linked_list(l);
+
     add(l, 4);
     add(l, 2);
     add(l, 3);
@@ -11,8 +13,11 @@ int main(){
     traverse(l);
     //clear(l);
     remove(l, 3);
+    traverse(l);
     remove(l, 2);
+    traverse(l);
     remove(l, 5);
+    traverse(l);
     remove(l, 4);
     traverse(l);
     

@@ -1,7 +1,7 @@
 typedef struct Node{
-    char data;
+    int data;
     struct Node* left;
     struct Node* right;
 }NODE;
 
-NODE* init_node(char);
+NODE* init_node(int);

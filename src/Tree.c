@@ -2,6 +2,11 @@
 #include <queue>
 #include "Tree.h"
 
+void init_tree(TREE& t){
+    t.root = NULL;
+}
+
+
 void preorder_traverse_tree(TREE& t){
     preorder_traverse(t.root);
     std::cout << std::endl;
@@ -86,18 +91,53 @@ NODE* search(NODE* n, int val){
     else return n;
 }
 
-void populate_tree(TREE* t){
-    NODE* root = init_node(30);
-    root->left = init_node(15);
-    root->right = init_node(34);
 
-    root->left->left = init_node(7);
-    root->left->right = init_node(25);
-    root->right->left = init_node(32);
-    root->right->right = init_node(72);
+NODE** search_parents_ref(TREE& t, int val){
+    NODE** ret=NULL;
 
-    root->left->left->right = init_node(10);
-    root->right->right->left = init_node(65);
+    NODE* cur = t.root;
 
-    t->root = root;
+    while(cur){
+        if(val < cur->data){
+            ret = &cur->left;
+            cur = cur->left;
+        }
+        else if (val > cur->data){
+            ret = &cur->right;
+            cur = cur->right;
+        }
+        else return ret;
+    }
+    
+    return NULL;
+
+}
+
+void add_element(TREE& t, int val){
+    if(!t.root){ 
+        t.root = init_node(val);
+        return;
+    }
+    
+    NODE* cur = t.root;
+    NODE** child = NULL;
+    while(cur){
+        if(cur->data > val){
+            child = &cur->left;
+            cur = cur->left;
+        }
+        else if (cur->data < val){
+            child = &cur->right;
+            cur = cur->right;
+        }
+        else return;
+    }
+
+    *child = init_node(val);
+
+}
+
+void remove_element(TREE& t, int val){
+    NODE** ret = search_parents_ref(t, val);
+    //TO BE CONCLUDED
 }

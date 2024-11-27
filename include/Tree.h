@@ -14,6 +14,7 @@ void destruct_tree(TREE&);
 void search_bin_tree(TREE&, int);
 void add_element(TREE&, int);
 void remove_element(TREE&, int);
+NODE* find_greatest_node(NODE*);
 
 void preorder_traverse(NODE*);
 void inorder_traverse(NODE*);

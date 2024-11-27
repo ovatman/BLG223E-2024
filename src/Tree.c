@@ -30,7 +30,7 @@ void destruct_tree(TREE& t){
 void search_bin_tree(TREE& t, int val){
     NODE* n = search(t.root, val);
     if(n) std::cout << n->data << std::endl;
-    else std::cout << val << "Not found" << std::endl;
+    else std::cout << val << " Not found" << std::endl;
 }
 
 void preorder_traverse(NODE* n){
@@ -137,7 +137,20 @@ void add_element(TREE& t, int val){
 
 }
 
+NODE* find_greatest_node(NODE* cur){
+    while(cur->right)
+        cur = cur->right;
+    
+    return cur;
+}
+
 void remove_element(TREE& t, int val){
-    NODE** ret = search_parents_ref(t, val);
-    //TO BE CONCLUDED
+    NODE** parent_ref = search_parents_ref(t, val);
+    NODE* left_child = (*parent_ref)->left;
+    NODE* right_child = (*parent_ref)->right;
+    free(*parent_ref);
+    *parent_ref = left_child;
+    NODE* greatest_node = find_greatest_node(left_child);
+    greatest_node->right = right_child;
+
 }
